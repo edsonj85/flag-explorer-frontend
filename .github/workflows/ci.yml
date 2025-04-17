@@ -1,0 +1,48 @@
+name: Vue.js CI Pipeline
+
+# Trigger the workflow on push to the main branch and on pull requests to the main branch
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu image to run your pipeline
+
+    steps:
+      # Step 1: Checkout code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Node.js (you can modify the version as per your requirement)
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'  # Specify the Node.js version you're using
+
+      # Step 3: Install dependencies using npm
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Step 4: Run unit tests with Jest (modify if you are using another test suite)
+      - name: Run unit tests
+        run: |
+          npm run test:unit
+
+      # Step 5: Build the Vue.js project for production
+      - name: Build the app
+        run: |
+          npm run build
+
+      # Step 6: Optional - Deploy the app (Example for Netlify or Vercel deployment)
+      # Uncomment the following section if you want to deploy after building the app.
+
+      # - name: Deploy to Netlify
+      #   run: |
+      #     npm install -g netlify-cli
+      #     netlify deploy --prod --dir=dist
