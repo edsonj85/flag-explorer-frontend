@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
-import CountryDetail from '../views/CountryDetail.vue'
 
 const routes = [
-    { path: '/', component: Home },
-    { path: '/country/:name', component: CountryDetail, props: true }
+    {
+        path: '/',
+        component: () => import('../views/Home.vue')
+    },
+    {
+        path: '/country/:name',
+        component: () => import('../views/CountryDetail.vue'),
+        props: true
+    }
 ]
 
 export default createRouter({

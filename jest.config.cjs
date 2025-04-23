@@ -11,5 +11,8 @@ module.exports = {
     },
     collectCoverage: true, // Collect test coverage
     coverageReporters: ['html', 'text-summary'], // Define coverage reports
+    transformIgnorePatterns: [
+        '/node_modules/(?!(axios)/)',
+    ],
 }
 

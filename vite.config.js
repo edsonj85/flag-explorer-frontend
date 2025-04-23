@@ -11,6 +11,11 @@ export default defineConfig(({ mode }) => {
         '@': '/src',
       },
     },
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      include: ['tests/**/*.test.js']
+    },
     server: {
       proxy: {
         '/countries': {
